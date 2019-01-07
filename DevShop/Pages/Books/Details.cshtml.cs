@@ -21,6 +21,8 @@ namespace DevShop.Pages.Books
 
         public Book Book { get; set; }
 
+        public string AuthorString { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -28,12 +30,17 @@ namespace DevShop.Pages.Books
                 return NotFound();
             }
 
-            Book = await _context.Book.FirstOrDefaultAsync(m => m.Id == id);
+
+            Book = await _context
+                .Book
+                .Include(c => c.BookAuthors)
+                .ThenInclude(c => c.Author)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (Book == null)
-            {
                 return NotFound();
-            }
+
+            AuthorString = string.Join(", ", Book.BookAuthors.Select(c => c.Author.FullName));
             return Page();
         }
     }

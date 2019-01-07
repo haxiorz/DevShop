@@ -1,64 +1,63 @@
 ﻿@page
+@using System.Net.Mime
 @model DevShop.Pages.Books.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="book-content">
+    <div class="book-main-info">
+        <img src="~/images/BookCovers/@Html.DisplayFor(model => model.Book.ImgPath)" class="bookcover" />
+        <div class="book-main-info-details">
+            <h2>@Html.DisplayFor(model => model.Book.Name)</h2>
+            <div>Autor: @Html.DisplayFor(model => model.AuthorString)</div>
+            <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)</div>
+            <div>Stron: @Html.DisplayFor(model => model.Book.NumberOfPages)</div>
+            <div>Publikacja: @Html.DisplayFor(model => model.Book.Published)</div>
+        </div>
+
+    </div>
+    <hr />
+</div>
+
+<style>
+    .bookcover{
+        height: 330px;
+        width: 220px;
+        margin-right: 20px;
+    }
+
+    .book-main-info-details>h2{
+        margin-top: 0px;
+    }
+
+    .book-content {
+        padding-top: 50px;
+    }
+
+    .book-main-info {
+        display: flex;
+        flex-direction: row;
+    }
+    .book-main-info-details>div{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .book-main-info-details {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 
 <div>
-    <h4>Book</h4>
-    <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.Name)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Book.Description)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Book.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.Price)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.Price)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.DiscountedPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.DiscountedPrice)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.ImgPath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.ImgPath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.UserScore)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.UserScore)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.NumberOfPages)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.NumberOfPages)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.Published)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.Published)
         </dd>
     </dl>
 </div>

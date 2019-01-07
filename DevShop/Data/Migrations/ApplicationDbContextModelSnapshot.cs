@@ -42,7 +42,7 @@ namespace DevShop.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<decimal>("DiscountedPrice");
+                    b.Property<decimal?>("DiscountedPrice");
 
                     b.Property<string>("ImgPath");
 
