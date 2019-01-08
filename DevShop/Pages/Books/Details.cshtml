@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @using System.Net.Mime
 @model DevShop.Pages.Books.DetailsModel
 
@@ -6,13 +6,14 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+
 <div class="book-content">
     <div class="book-main-info">
         <img src="~/images/BookCovers/@Html.DisplayFor(model => model.Book.ImgPath)" class="bookcover" />
         <div class="book-main-info-details">
             <h2>@Html.DisplayFor(model => model.Book.Name)</h2>
             <div>Autor: @Html.DisplayFor(model => model.AuthorString)</div>
-            <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)</div>
+            <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)/6</div>
             <div>Stron: @Html.DisplayFor(model => model.Book.NumberOfPages)</div>
             <div>Publikacja: @Html.DisplayFor(model => model.Book.Published)</div>
         </div>
