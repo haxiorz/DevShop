@@ -32,7 +32,7 @@ namespace DevShop.Pages.Books
 
 
             Book = await _context
-                .Book
+                .Books
                 .Include(c => c.BookAuthors)
                 .ThenInclude(c => c.Author)
                 .FirstOrDefaultAsync(m => m.Id == id);

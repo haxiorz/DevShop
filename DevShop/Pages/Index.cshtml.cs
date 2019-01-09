@@ -25,8 +25,9 @@ namespace DevShop.Pages
 
         public IActionResult OnGetAsync()
         {
-            ViewModel.RecommendedBooks = _context.Book.Where(c => c.IsRecommended).ToList();
-            ViewModel.LimitedSaleBooks = _context.Book.Where(c => c.IsOnLimitedSale).ToList();
+            ViewModel.RecommendedBooks = _context.Books.Where(c => c.IsRecommended).ToList();
+            ViewModel.LimitedSaleBooks = _context.Books.Where(c => c.IsOnLimitedSale).ToList();
+            ViewModel.Categories = _context.Categories.Select(c => c.Name).ToList();
 
             return Page();
         }

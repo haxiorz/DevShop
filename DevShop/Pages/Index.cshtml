@@ -3,20 +3,19 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<link rel="stylesheet" href="~/css/mainPage.css" />
 <div class="main-container">
     <div class="main-top">
         <div class="menu-left">
             <ul class="menu-left-items">
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Programming</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">History</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Fiction</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Fantasy</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Comics</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Food & Cooking</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Biography</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Religion</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
-                <li><h4><a class="menu-left-link-flex-container" href="#"><span class="menu-left-link-flex-text">Science</span><i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i></a></h4></li>
+                @foreach (var category in @Model.ViewModel.Categories)
+                {
+                    <li><h4><a class="menu-left-link-flex-container" href="/Category/@Html.DisplayFor(model => category)">
+                                <span class="menu-left-link-flex-text">@Html.DisplayTextFor(model => category)</span>
+                        <i class="glyphicon glyphicon-chevron-right glyph-menu-left"></i>
+                    </a></h4></li>
+                }
+                
             </ul>
         </div>
 
@@ -104,141 +103,3 @@
         </div>
     </div>
 </div>
-<style>
-    .book-cover-recommended-timed {
-        width: 55%;
-    }
-
-    .recommended-book-timed-item {
-        margin-top: 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .main-recommended-timed {
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        border: 1px solid #eee;
-        margin: 15px 15px 15px 0px;
-        height: auto;
-        width: 800px;
-        border-radius: 5px;
-    }
-
-    .main-recommended-container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .main-recommended {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .menu-left-link-flex-container {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .menu-left-link-flex-text {
-        flex-grow: 1;
-    }
-
-    .main-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .main-top {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .menu-left {
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
-        margin-top: -10px;
-    }
-
-    .menu-left-items {
-        border-left: 1px solid #eee;
-        border-right: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        background-color: white;
-        list-style-type: none;
-        padding: 0;
-        margin-bottom: 0px;
-        width: 190px;
-        border-radius: 0 0 5px 5px;
-    }
-
-    .box-title {
-        margin: 12px 0 0 12px;
-    }
-
-    body > div > div.main-container > div.main-top > div.menu-left > ul > li > h4 {
-        margin: 0px 5px 15px 5px;
-    }
-
-    div.main-top > div > ul > li > h4 > a:hover {
-        text-decoration: none;
-    }
-
-    div.main-top > div > ul > li > h4 > a {
-        color: black;
-    }
-
-    body > div > div.main-container > div.main-top > div.menu-left > ul > li:nth-child(1) > h4 > a {
-        padding-top: 5px;
-    }
-
-    #myCarousel {
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
-        width: 910px;
-        height: 300px;
-        margin-left: 25px;
-    }
-
-    .recommended-book-price {
-        font-weight: bold;
-        font-size: large;
-    }
-
-    .main-recommended-title {
-        flex-grow: 1;
-        margin-top: 9px;
-        font-weight: 600;
-    }
-
-    .main-recommended-box-left {
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
-        display: flex;
-        flex-direction: column;
-        background-color: white;
-        border: 1px solid #eee;
-        margin: 15px 15px 15px 0px;
-        height: auto;
-        width: 800px;
-        border-radius: 5px;
-    }
-
-    .main-recommended-box-left-row {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .recommended-book {
-        height: auto;
-        width: 150px;
-        display: flex;
-        flex-direction: column;
-        margin: 20px;
-    }
-
-    .book-cover-recommended {
-        width: 90%;
-    }
-</style>

@@ -10,6 +10,6 @@ namespace DevShop.Data.ViewModels
     {
         public List<Book> RecommendedBooks { get; set; }
         public List<Book> LimitedSaleBooks { get; set; }
-
+        public List<string> Categories { get; set; }
     }
 }

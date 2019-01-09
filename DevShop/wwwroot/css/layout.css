@@ -1,0 +1,65 @@
+﻿body {
+    background-color: rgb(242, 242, 242);
+    font-family: 'Open Sans', sans-serif;
+}
+.search-box-mid {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-box-button {
+    width: 35px;
+    height: 35px;
+    background-color: #eaedf2;
+    margin-top: -5px;
+}
+
+.sub-navbar {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+    border: 1px solid #eee;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    border-radius: 0 0 5px 0;
+}
+
+.search-box-box {
+    border: none;
+    background-color: #eaedf2;
+    height: 35px;
+    width: 400px;
+    margin-top: -5px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.search-box {
+    display: flex;
+    flex-direction: row;
+    margin-top: 19px;
+    margin-left: 125px;
+    border-bottom: #e4001e;
+    border-bottom-style: solid;
+    border-bottom-width: thick;
+}
+
+.search-box > h3 {
+    margin-top: auto;
+    margin-right: 20px;
+}
+
+body > nav > div > div.navbar-collapse.collapse > ul > li > a, .navbar-header > .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse {
+    background-color: #e4001e;
+    border-color: #e4001e;
+}
+
+#catalogTitle > h3{
+    margin-left: 5px;
+}

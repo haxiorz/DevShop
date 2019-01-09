@@ -34,7 +34,7 @@ namespace DevShop.Pages.Books
                 return Page();
             }
 
-            _context.Book.Add(Book);
+            _context.Books.Add(Book);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
