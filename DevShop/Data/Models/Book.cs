@@ -17,6 +17,9 @@ namespace DevShop.Data.Models
         public double UserScore { get; set; }
         public int NumberOfPages { get; set; }
         public DateTime Published { get; set; }
+        public bool IsRecommended { get; set; }
+        public bool IsOnLimitedSale { get; set; }
+        public decimal? LimitedSalePrice { get; set; }
 
         public ICollection<BookAuthor> BookAuthors { get; set; }
     }
