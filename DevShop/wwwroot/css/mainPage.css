@@ -1,6 +1,22 @@
 ﻿.book-cover-recommended-timed {
     width: 55%;
 }
+.recommended-book > a, .recommended-book > a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.recommended-book-timed-item > a, .recommended-book-timed-item > a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.recommended-book-timed-item-link-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .recommended-book-timed-item {
     margin-top: 15px;

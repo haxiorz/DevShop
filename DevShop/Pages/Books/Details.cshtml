@@ -12,7 +12,12 @@
         <img src="~/images/BookCovers/@Html.DisplayFor(model => model.Book.ImgPath)" class="bookcover" />
         <div class="book-main-info-details">
             <h2>@Html.DisplayFor(model => model.Book.Name)</h2>
-            <div>Autor: @Html.DisplayFor(model => model.AuthorString)</div>
+            <div>Autor:
+                @foreach (var author in Model.Book.BookAuthors)
+                {
+                <a asp-page="./Books/Details" asp-route-id="@author.AuthorId">@author.Author.FirstName @author.Author.LastName</a>
+                }
+                </div>
             <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)/6</div>
             <div>Stron: @Html.DisplayFor(model => model.Book.NumberOfPages)</div>
             <div>Publikacja: @Html.DisplayFor(model => model.Book.Published)</div>
@@ -34,7 +39,7 @@
     }
 
     .book-content {
-        padding-top: 50px;
+        padding-top: 25px;
     }
 
     .book-main-info {
@@ -63,6 +68,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Book.Id">Edit</a> |
+    <a asp-page="./Details" asp-route-id="@Model.Book.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

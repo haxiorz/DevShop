@@ -69,8 +69,8 @@
                     @foreach (var book in @Model.ViewModel.RecommendedBooks)
                     {
                         <div class="recommended-book">
-                            <img class="book-cover-recommended" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" />
-                            <p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p>
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)"><img class="book-cover-recommended" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" /></a>
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)"><p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p></a>
                             <p class="recommended-book-price">Cena: @Html.DisplayTextFor(model => book.Price)zł</p>
                         </div>
                     }
@@ -82,8 +82,8 @@
                     @foreach (var book in @Model.ViewModel.RecommendedBooks)
                     {
                         <div class="recommended-book">
-                            <img class="book-cover-recommended" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" />
-                            <p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p>
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)"><img class="book-cover-recommended" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" /></a>
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)"><p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p></a>
                             <p class="recommended-book-price">Cena: @Html.DisplayTextFor(model => book.Price)zł</p>
                         </div>
                     }
@@ -95,8 +95,12 @@
             @foreach (var book in @Model.ViewModel.LimitedSaleBooks)
             {
                 <div class="recommended-book-timed-item">
-                    <img class="book-cover-recommended-timed" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" />
-                    <p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p>
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)" class="recommended-book-timed-item-link-wrapper">
+                            <img class="book-cover-recommended-timed" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" />
+                        </a>
+                    
+                    <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)">
+                        <p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p></a>
                     <p class="recommended-book-price">Cena: @Html.DisplayTextFor(model => book.Price)zł</p>
                 </div>
             }

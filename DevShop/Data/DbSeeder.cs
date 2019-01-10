@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DevShop.Data.Constant;
 using DevShop.Data.Models;
+using DevShop.Data.Models.JoinTables;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -159,6 +160,29 @@ namespace DevShop.Data
             };
             _ctx.Categories.AddRange(categories);
 
+            var authors = new List<Author>()
+            {
+                new Author(){FirstName = "Maciej", LastName = "Dudziak"},
+                new Author(){FirstName = "Tomasz", LastName = "Kubik"},
+            };
+            _ctx.Authors.AddRange(authors);
+
+            var bookAuthors = new List<BookAuthor>()
+            {
+                new BookAuthor(){AuthorId = 1},
+                new BookAuthor(){AuthorId = 2},
+            };
+
+            _ctx.SaveChanges();
+
+            var booksAlreadyInserted = _ctx.Books.ToList();
+            foreach (var book in booksAlreadyInserted)
+            {
+                foreach (var relationship in bookAuthors)
+                    relationship.BookId = book.Id;
+                book.BookAuthors = bookAuthors;
+                _ctx.Books.Update(book);
+            }
             _ctx.SaveChanges();
         }
     }
