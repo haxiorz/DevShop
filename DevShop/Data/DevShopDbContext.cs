@@ -5,9 +5,9 @@ using DevShop.Data.Models.JoinTables;
 
 namespace DevShop.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class DevShopDbContext : IdentityDbContext<ExtendedIdentityUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public DevShopDbContext(DbContextOptions<DevShopDbContext> options)
             : base(options)
         {
 
@@ -16,6 +16,7 @@ namespace DevShop.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +32,9 @@ namespace DevShop.Data
                 .HasOne(ba => ba.Author)
                 .WithMany(a => a.BookAuthors)
                 .HasForeignKey(ba => ba.AuthorId);
+            modelBuilder.Entity<Country>()
+                .HasMany(c => c.Users)
+                .WithOne(c => c.Country);
         }
     }
 }

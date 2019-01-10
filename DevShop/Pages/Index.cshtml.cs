@@ -13,11 +13,11 @@ namespace DevShop.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly DevShop.Data.ApplicationDbContext _context;
+        private readonly DevShop.Data.DevShopDbContext _context;
 
         public IndexPageViewModel ViewModel { get; set; }
 
-        public IndexModel(DevShop.Data.ApplicationDbContext context)
+        public IndexModel(DevShop.Data.DevShopDbContext context)
         {
             _context = context;
             ViewModel = new IndexPageViewModel();

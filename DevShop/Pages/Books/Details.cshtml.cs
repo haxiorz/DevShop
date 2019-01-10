@@ -12,9 +12,9 @@ namespace DevShop.Pages.Books
 {
     public class DetailsModel : PageModel
     {
-        private readonly DevShop.Data.ApplicationDbContext _context;
+        private readonly DevShop.Data.DevShopDbContext _context;
 
-        public DetailsModel(DevShop.Data.ApplicationDbContext context)
+        public DetailsModel(DevShop.Data.DevShopDbContext context)
         {
             _context = context;
         }
