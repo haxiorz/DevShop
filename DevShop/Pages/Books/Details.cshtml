@@ -9,65 +9,97 @@
 
 <div class="book-content">
     <div class="book-main-info">
-        <img src="~/images/BookCovers/@Html.DisplayFor(model => model.Book.ImgPath)" class="bookcover" />
-        <div class="book-main-info-details">
-            <h2>@Html.DisplayFor(model => model.Book.Name)</h2>
-            <div>Autor:
-                @foreach (var author in Model.Book.BookAuthors)
-                {
-                <a asp-page="./Books/Details" asp-route-id="@author.AuthorId">@author.Author.FirstName @author.Author.LastName</a>
-                }
+        <div class="book-main-info-left">
+            <img src="~/images/BookCovers/@Html.DisplayFor(model => model.Book.ImgPath)" class="bookcover" />
+            <div class="book-main-info-details">
+                <h2>@Html.DisplayFor(model => model.Book.Name)</h2>
+                <div>
+                    Autor:
+                    @foreach (var author in Model.Book.BookAuthors)
+                    {
+                        <a asp-page="./Books/Details" asp-route-id="@author.AuthorId">@author.Author.FirstName @author.Author.LastName</a>
+                    }
                 </div>
-            <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)/6</div>
-            <div>Stron: @Html.DisplayFor(model => model.Book.NumberOfPages)</div>
-            <div>Publikacja: @Html.DisplayFor(model => model.Book.Published)</div>
+                <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)/6</div>
+                <div>Stron: @Html.DisplayFor(model => model.Book.NumberOfPages)</div>
+                <div>Publikacja: @Html.DisplayFor(model => model.Book.Published)</div>
+            </div>
         </div>
-
+        <div class="book-description">
+            <dl class="dl-horizontal">
+                <dt>
+                    Opis:
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Book.Description)
+                </dd>
+            </dl>
+        </div>
     </div>
     <hr />
+    <div class="book-main-info-right">
+        <div>Cena: @Html.DisplayFor(model => model.Book.Price)</div>
+    </div>
+    
 </div>
 
 <style>
-    .bookcover{
+    .bookcover {
         height: 330px;
         width: 220px;
-        margin-right: 20px;
+        margin: 10px 25px 10px 10px;
     }
 
-    .book-main-info-details>h2{
-        margin-top: 0px;
+    .book-description {
+        margin-top: 25px;
+        margin-right: 15px;
+    }
+
+    .book-description, .book-main-info-right, .book-main-info-left {
+        box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px 0;
+        background-color: white;
+        border: 1px solid #eee;
+        border-radius: 5px;
+    }
+
+    .book-description > .dl-horizontal {
+        margin: 15px 15px 15px -100px;
+    }
+
+    .book-main-info-right {
+        width: 250px;
+    }
+
+    .book-main-info-left {
+        display: flex;
+        flex-direction: row;
+        margin-right: 15px;
+    }
+
+    .book-main-info-details > h2 {
+        margin-top: 0;
     }
 
     .book-content {
-        padding-top: 25px;
+        /*padding-top: 15px;*/
+        display: flex;
+        flex-direction: row;
     }
 
     .book-main-info {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        width: 100%
     }
-    .book-main-info-details>div{
+
+    .book-main-info-details > div {
         margin-top: 5px;
         margin-bottom: 5px;
     }
 
     .book-main-info-details {
+        padding-top: 15px;
         display: flex;
         flex-direction: column;
     }
 </style>
-
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Book.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Details" asp-route-id="@Model.Book.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
