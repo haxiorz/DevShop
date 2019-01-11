@@ -6,23 +6,22 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-
 <div class="book-content">
     <div class="book-main-info">
         <div class="book-main-info-left">
-            <img src="~/images/BookCovers/@Html.DisplayFor(model => model.Book.ImgPath)" class="bookcover" />
+            <img src="~/images/BookCovers/@Html.DisplayFor(model => model.ViewModel.Book.ImgPath)" class="bookcover" />
             <div class="book-main-info-details">
-                <h2>@Html.DisplayFor(model => model.Book.Name)</h2>
+                <h2>@Html.DisplayFor(model => model.ViewModel.Book.Name)</h2>
                 <div>
                     Autor:
-                    @foreach (var author in Model.Book.BookAuthors)
+                    @foreach (var author in Model.ViewModel.Book.BookAuthors)
                     {
                         <a asp-page="./Books/Details" asp-route-id="@author.AuthorId">@author.Author.FirstName @author.Author.LastName</a>
                     }
                 </div>
-                <div>Ocena: @Html.DisplayFor(model => model.Book.UserScore)/6</div>
-                <div>Stron: @Html.DisplayFor(model => model.Book.NumberOfPages)</div>
-                <div>Publikacja: @Html.DisplayFor(model => model.Book.Published)</div>
+                <div>Ocena: @Html.DisplayFor(model => model.ViewModel.Book.UserScore)/6</div>
+                <div>Stron: @Html.DisplayFor(model => model.ViewModel.Book.NumberOfPages)</div>
+                <div>Publikacja: @Html.DisplayFor(model => model.ViewModel.Book.Published)</div>
             </div>
         </div>
         <div class="book-description">
@@ -31,19 +30,102 @@
                     Opis:
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Book.Description)
+                    @Html.DisplayFor(model => model.ViewModel.Book.Description)
                 </dd>
             </dl>
         </div>
+        @*<div class="book-details-similar">*@
+            <div class="book-details-similar">
+                <h3 class="box-title">Recommended</h3>
+                <div class="main-recommended-box-left-row">
+                    @foreach (var book in @Model.ViewModel.Similar)
+                    {
+                        <div class="recommended-book">
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)"><img class="book-cover-recommended" src="~/images/BookCovers/@Html.DisplayFor(model => book.ImgPath)" /></a>
+                            <a asp-page="./Books/Details" asp-route-id="@Html.DisplayTextFor(model => book.Id)"><p class="main-recommended-title">@Html.DisplayTextFor(model => book.Name)</p></a>
+                            <p class="recommended-book-price">Cena: @Html.DisplayTextFor(model => book.Price)zł</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        @*</div>*@
     </div>
     <hr />
     <div class="book-main-info-right">
-        <div>Cena: @Html.DisplayFor(model => model.Book.Price)</div>
+        <div class="book-details-price">Cena: @Html.DisplayFor(model => model.ViewModel.Book.Price)</div>
+        <div class="book-details-add-to-basket"><img src="~/images/shopping-basket.png" /></div>
     </div>
-    
+
 </div>
 
 <style>
+    .book-details-add-to-basket{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .book-details-add-to-basket > img {
+        height: 40%;
+        width: 40%;
+    }
+    .book-details-price {
+        font-weight: bold;
+        font-size: large;
+        margin-top: 10px;
+    }
+    .recommended-book {
+        height: auto;
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+
+        .recommended-book > a{
+            flex-grow: 1;
+            text-decoration: none;
+            color: black;
+        }
+
+        .book-cover-recommended {
+            width: 90%;
+        }
+
+    .recommended-book-price {
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .main-recommended-title {
+        flex-grow: 1;
+        margin-top: 9px;
+        font-weight: 600;
+    }
+
+
+    .main-recommended-box-left-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .box-title {
+        margin: 12px 0 0 12px;
+    }
+
+    .book-details-similar {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border: 1px solid #eee;
+        margin: 15px 15px 15px 0px;
+        height: auto;
+        width: 800px;
+        border-radius: 5px;
+        width: 98.3%;
+    }
+
     .bookcover {
         height: 330px;
         width: 220px;
@@ -62,12 +144,17 @@
         border-radius: 5px;
     }
 
-    .book-description > .dl-horizontal {
-        margin: 15px 15px 15px -100px;
-    }
+        .book-description > .dl-horizontal {
+            margin: 15px 15px 15px -100px;
+        }
 
     .book-main-info-right {
         width: 250px;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*justify-content: center;*/
     }
 
     .book-main-info-left {
@@ -102,4 +189,12 @@
         display: flex;
         flex-direction: column;
     }
+
+
+
+
+
+
+
+
 </style>

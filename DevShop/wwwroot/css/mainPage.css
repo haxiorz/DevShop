@@ -116,8 +116,11 @@ body > div > div.main-container > div.main-top > div.menu-left > ul > li:nth-chi
     font-size: large;
 }
 
-.main-recommended-title {
+.recommended-book > a{
     flex-grow: 1;
+}
+
+.main-recommended-title {
     margin-top: 9px;
     font-weight: 600;
 }

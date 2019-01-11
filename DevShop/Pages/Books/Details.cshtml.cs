@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using DevShop.Data;
 using DevShop.Data.Models;
+using DevShop.Data.ViewModels;
 
 namespace DevShop.Pages.Books
 {
@@ -17,9 +18,10 @@ namespace DevShop.Pages.Books
         public DetailsModel(DevShop.Data.DevShopDbContext context)
         {
             _context = context;
+            ViewModel = new DetailsPageViewModel();
         }
 
-        public Book Book { get; set; }
+        public DetailsPageViewModel ViewModel { get; set; }
 
         public string AuthorString { get; set; }
 
@@ -31,16 +33,21 @@ namespace DevShop.Pages.Books
             }
 
 
-            Book = await _context
+            ViewModel.Book = await _context
                 .Books
                 .Include(c => c.BookAuthors)
                 .ThenInclude(c => c.Author)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Book == null)
+            ViewModel.Similar = await _context
+                .Books
+                //.Where(c => c.Id != id)
+                .Take(4).ToListAsync();
+
+            if (ViewModel.Book == null)
                 return NotFound();
 
-            AuthorString = string.Join(", ", Book.BookAuthors.Select(c => c.Author.FullName));
+            AuthorString = string.Join(", ", ViewModel.Book.BookAuthors.Select(c => c.Author.FullName));
             return Page();
         }
     }
