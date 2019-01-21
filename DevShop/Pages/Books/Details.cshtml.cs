@@ -41,7 +41,6 @@ namespace DevShop.Pages.Books
 
             ViewModel.Similar = await _context
                 .Books
-                //.Where(c => c.Id != id)
                 .Take(4).ToListAsync();
 
             if (ViewModel.Book == null)

@@ -16,5 +16,6 @@ namespace DevShop.Data.Models
         public Country Country { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public Cart UserCart { get; set; }
     }
 }

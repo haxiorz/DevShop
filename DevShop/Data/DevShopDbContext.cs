@@ -35,6 +35,10 @@ namespace DevShop.Data
             modelBuilder.Entity<Country>()
                 .HasMany(c => c.Users)
                 .WithOne(c => c.Country);
+            modelBuilder.Entity<ExtendedIdentityUser>()
+                .HasOne(c => c.UserCart)
+                .WithOne(u => u.User)
+                .HasForeignKey<Cart>(b => b.UserRef);
         }
     }
 }
